@@ -1,0 +1,8 @@
+<h1>Search Flights</h1>
+<%= form_with url: root_path, method: :get, local: true do |form| %>
+  <%= form.collection_select :departure_airport_id, Airport.all, :id, :code, prompt: 'Select Departure Airport' %>
+  <%= form.collection_select :arrival_airport_id, Airport.all, :id, :code, prompt: 'Select Arrival Airport' %>
+  <%= form.select :num_passengers, options_for_select((1..4).to_a) %>
+  <%= form.date_select :date, start_date: Date.today, end_date: 1.year.from_now, discard_day: true %>
+  <%= form.submit 'Search' %>
+<% end %>
